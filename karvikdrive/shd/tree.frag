@@ -15,5 +15,6 @@ out vec4 finalColor;
 
 void main() {
     vec4 albedo = texture(texture0, fragTexCoord);
-    finalColor = vec4(1.0, 0.0, 0.0, 1.0); // solid red, ignore texture
+    //TODO: remove this, seems to be some sort of debugging thing left over
+    finalColor = vec4(1.0, 0.0, 0.0, 1.0); // solid red, ignore texture 
 }
