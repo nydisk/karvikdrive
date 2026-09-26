@@ -9,7 +9,7 @@
 #include "Map.hpp"
 #include "Car.hpp"
 #include "Configuration.hpp"
-#include "TreeRenderer.hpp"
+
 using Cfg = Configuration;
 
 class Renderer {
@@ -42,11 +42,11 @@ public:
 		UnloadRenderTexture(_sceneTex);
 	}
 
-	void draw(Camera3D& cam, Map& map, Car& car, DayNight& dayNight, TreeRenderer& treeRenderer, const std::vector<Vector3>& trees, const std::vector<Vector3>& woods, float dt) {
+	void draw(Camera3D& cam, Map& map, Car& car, DayNight& dayNight, float dt) {
 		updateStars(dt, dayNight);
 		beginScene(dayNight);
 		drawSky(dayNight);
-		drawWorld(cam, map, car, dayNight, treeRenderer, trees, woods);
+		drawWorld(cam, map, car, dayNight);
 		endScene();
 		drawQuantize(cam);
 	}
@@ -154,7 +154,7 @@ private:
 		rlEnableDepthMask();
 	}
 
-	void drawWorld(Camera3D& cam, Map& map, Car& car, DayNight& dayNight, TreeRenderer& treeRenderer, const std::vector<Vector3>& trees, const std::vector<Vector3>& woods){
+	void drawWorld(Camera3D& cam, Map& map, Car& car, DayNight& dayNight){
 		dayNight.applyToShader(_shaders.get(ShaderType::Terrain));
 		dayNight.applyToShader(_shaders.get(ShaderType::Car));
 		_shadows.bindToShader(ShaderType::Terrain, _shaders);
@@ -169,7 +169,6 @@ private:
 		drawStars(cam);
 		map.render(nullptr);
 		car.render(nullptr);
-		treeRenderer.render(trees, woods, nullptr); // no override shader here
 		EndMode3D();
 	}
 

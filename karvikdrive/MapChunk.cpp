@@ -81,7 +81,8 @@ void MapChunk::uploadIfReady(int filter) {
 	if (_pendingBytes.empty()) return;
 
 	if (_currentTexture.id > 0) UnloadTexture(_currentTexture);
-	Image temp = LoadImageFromMemory(".png", _pendingBytes.data(), (int)_pendingBytes.size());
+
+	Image temp = LoadImageFromMemory(".png", _pendingBytes.data(), (int)_pendingBytes.size()); // currently loads jpg data as png, but seems to be broken as of RAYLIB6? seems to hate the jpg format now
 	_currentTexture = LoadTextureFromImage(temp);
 	UnloadImage(temp);
 

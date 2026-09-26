@@ -89,13 +89,7 @@
     <ClInclude Include="HUD.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Treelayer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HttpClient.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeRenderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -108,7 +102,5 @@
     <None Include="shd\quantize.frag" />
     <None Include="shd\shadow.frag" />
     <None Include="shd\sky.frag" />
-    <None Include="shd\tree.vert" />
-    <None Include="shd\tree.frag" />
   </ItemGroup>
 </Project>

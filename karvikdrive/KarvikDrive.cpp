@@ -9,7 +9,6 @@
 #include "DayNight.hpp"
 #include "TileDownloader.hpp"
 #include "HUD.hpp"
-#include "Treelayer.hpp"
 
 using Cfg = Configuration;
 
@@ -46,12 +45,10 @@ int main() {
 	ShaderManager shaders{};
 	ShadowRenderer shadows(shaders);
 	Renderer renderer(shaders, shadows, Cfg::graphicsCfg.renderWidth, Cfg::graphicsCfg.renderHeight, Cfg::skyCfg, Cfg::starCfg, Cfg::quantizeCfg);
-	TreeRenderer treeRenderer(shaders);
 	CameraController camera{};
 	HUD hud{};
 
 	Map map(59.29960644714724, 24.65917325632329, TEXTURE_FILTER_ANISOTROPIC_8X);
-	TreeLayer treeLayer(map.centerLat(), map.centerLon());
 	Car car(camera.camera(), "mdl/civic.obj", CarConfig::Civic(), map.getCarSpawn());
 
 	DayNight dayNight(Cfg::dayNightCfg, map.mpt());
@@ -69,7 +66,6 @@ int main() {
 		}
 
 		map.update(car, camera);
-		treeLayer.update(car.lat(), car.lon(), map.centerLat(), map.centerLon());
 		car.update(map);
 		camera.update(car.pos(), car.dir(), dt);
 		dayNight.update(dt, map.mpt());
@@ -77,10 +73,9 @@ int main() {
 		shadows.beginPass(dayNight.lightSpaceMatrix());
 		map.render(&shadows.shader());
 		car.render(&shadows.shader());
-		treeRenderer.render(treeLayer.trees(), treeLayer.woods(), &shadows.shader());
 		shadows.endPass();
 
-		renderer.draw(camera.camera(), map, car, dayNight, treeRenderer, treeLayer.trees(), treeLayer.woods(), dt);
+		renderer.draw(camera.camera(), map, car, dayNight, dt);
 
 		hud.draw(car.velocity(), car.lat(), car.lon(), car.distanceTravelled());
 		EndDrawing();

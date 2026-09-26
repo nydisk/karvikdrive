@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ExternalIncludePath>X:\C++ Libraries\RAYLIB\include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>X:\C++ Libraries\RAYLIB\lib;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>X:\RAYLIB\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>X:\RAYLIB\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -152,8 +152,6 @@
     <ClInclude Include="ShaderManager.hpp" />
     <ClInclude Include="ShadowRenderer.hpp" />
     <ClInclude Include="SystemConfig.hpp" />
-    <ClInclude Include="Treelayer.hpp" />
-    <ClInclude Include="TreeRenderer.hpp" />
     <ClInclude Include="VehicleLoader.hpp" />
     <ClInclude Include="CoordinateMath.hpp" />
     <ClInclude Include="ext\json.hpp" />
@@ -171,8 +169,6 @@
     <None Include="shd\sky.frag" />
     <None Include="shd\terrain.frag" />
     <None Include="shd\terrain.vert" />
-    <None Include="shd\tree.frag" />
-    <None Include="shd\tree.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
