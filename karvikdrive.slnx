@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="karvikdrive/karvikdrive.vcxproj" Id="4021114c-03d2-4b35-a71a-980dde92fa13" />
+</Solution>
