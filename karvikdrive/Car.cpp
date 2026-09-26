@@ -1,3 +1,7 @@
+//TODO: rework this entire handling portion using an actual 3D physics library 
+//      instead of whatever actual SLOP this is currently
+//      nightmare, held together by hopes and dreams
+
 #include "Car.hpp"
 #include "Map.hpp"
 #include <cmath>
