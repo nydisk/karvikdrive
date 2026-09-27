@@ -49,8 +49,8 @@ private:
     }
 
     void drawSpeedometer(float speedKmh, float uiScale) const {
-        int   sw = GetScreenWidth();
-        int   sh = GetScreenHeight();
+        int sw = GetScreenWidth();
+        int sh = GetScreenHeight();
         float mw = (float)_speedMeter.width * uiScale;
         float mh = (float)_speedMeter.height * uiScale;
         float mx = sw / 2.0f - mw / 2.0f;
@@ -65,7 +65,7 @@ private:
         );
         DrawTextureEx(_speedMeter, { mx, my }, 0.0f, uiScale, WHITE);
 
-        float   angle = Lerp(PI, 2.0f * PI, speedKmh / 300.0f);
+        float angle = Lerp(PI, 2.0f * PI, speedKmh / 300.0f);
         Vector2 base = { sw / 2.0f, sh - 4.0f * uiScale - 5.0f * uiScale };
         Vector2 end = base + Vector2{ cosf(angle), sinf(angle) } * 85.0f * uiScale;
         DrawLineEx(base, end, 5.0f * uiScale, RED);

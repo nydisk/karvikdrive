@@ -5,8 +5,8 @@
 using json = nlohmann::json;
 
 namespace {
-	constexpr float RadToDeg = 57.29577951308232f;
-	constexpr float DegToRad = 0.017453292519943295f;
+	constexpr float kRadToDeg = 57.29577951308232f;
+	constexpr float kDegToRad = 0.017453292519943295f;
 }
 
 struct CarConfig {
@@ -106,8 +106,8 @@ inline void to_json(json& j, const CarConfig& c) {
 		{"colorG", c.headlightColorG},
 		{"colorB", c.headlightColorB},
 		{"range", c.headlightRange},
-		{"innerAngle", acosf(c.headlightInnerCos) * RadToDeg},
-		{"outerAngle", acosf(c.headlightOuterCos) * RadToDeg},
+		{"innerAngle", acosf(c.headlightInnerCos) * kRadToDeg},
+		{"outerAngle", acosf(c.headlightOuterCos) * kRadToDeg},
 	};
 
 	j = json{
@@ -168,8 +168,8 @@ inline void from_json(const json& j, CarConfig& c) {
 	c.headlightColorB = headlights.value("colorB", c.headlightColorB);
 	c.headlightRange = headlights.value("range", c.headlightRange);
 
-	float innerAngleDeg = headlights.value("innerAngleDeg", acosf(c.headlightInnerCos) * RadToDeg);
-	float outerAngleDeg = headlights.value("outerAngleDeg", acosf(c.headlightOuterCos) * RadToDeg);
-	c.headlightInnerCos = cosf(innerAngleDeg * DegToRad);
-	c.headlightOuterCos = cosf(outerAngleDeg * DegToRad);
+	float innerAngleDeg = headlights.value("innerAngleDeg", acosf(c.headlightInnerCos) * kRadToDeg);
+	float outerAngleDeg = headlights.value("outerAngleDeg", acosf(c.headlightOuterCos) * kRadToDeg);
+	c.headlightInnerCos = cosf(innerAngleDeg * kDegToRad);
+	c.headlightOuterCos = cosf(outerAngleDeg * kDegToRad);
 }
