@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="raylib.local.props" Condition="Exists('raylib.local.props')" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <RaylibDirectory Condition="'$(RaylibDirectory)' == ''"></RaylibDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>Raylib</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="RaylibDirectory">
+      <Value>$(RaylibDirectory)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

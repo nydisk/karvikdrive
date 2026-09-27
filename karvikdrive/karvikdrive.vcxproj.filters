@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{33772dfa-3d4a-4d41-bd40-d31141840545}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KarvikDrive.cpp">
@@ -106,13 +109,32 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shd\terrain.vert" />
-    <None Include="shd\terrain.frag" />
-    <None Include="shd\car.vert" />
-    <None Include="shd\car.frag" />
-    <None Include="shd\shadow.vert" />
-    <None Include="shd\quantize.frag" />
-    <None Include="shd\shadow.frag" />
-    <None Include="shd\sky.frag" />
+    <None Include="shd\car.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\car.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\quantize.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\shadow.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\shadow.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\sky.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\terrain.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shd\terrain.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="raylib.props" />
+    <None Include="raylib.local.props.example" />
+    <None Include="raylib.local.props" />
   </ItemGroup>
 </Project>

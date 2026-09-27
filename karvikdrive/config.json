@@ -13,11 +13,11 @@
     },
     "graphics": {
         "fullscreen": false,
-        "height": 1080,
+        "height": 720,
         "renderHeight": 360,
         "renderWidth": 640,
         "uiScale": 1.5,
-        "width": 1920
+        "width": 1280
     },
     "quantize": {
         "colorDepth": 16,
