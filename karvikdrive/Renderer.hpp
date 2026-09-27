@@ -80,6 +80,37 @@ private:
 		_shaders.set(ShaderType::Sky, "zenithScale", &_skyCfg.zenithScale, SHADER_UNIFORM_FLOAT);
 	}
 
+	void setHeadlightUniforms(const Car& car) {
+
+		float headingRad = car.dir() * DEG2RAD;
+		Vector3 forward = { cosf(headingRad), 0.f, sinf(headingRad) };
+		Vector3 right = { -sinf(headingRad), 0.f, cosf(headingRad) };
+		Vector3 pos = car.pos();
+
+		Vector3 base = Vector3Add(pos, Vector3Add(Vector3Scale(forward, car.info().config.headlightForwardOffset), Vector3{ 0.f, car.info().config.headlightHeightOffset, 0.f }));
+		Vector3 posL = Vector3Add(base, Vector3Scale(right, -car.info().config.headlightSideOffset));
+		Vector3 posR = Vector3Add(base, Vector3Scale(right, car.info().config.headlightSideOffset));
+		Vector3 dir = Vector3Normalize(Vector3Subtract(forward, Vector3{ 0.f, car.info().config.headlightDownwardTilt, 0.f }));
+
+		Vector3 color = { 1.0f, 0.95f, 0.85f };
+		float range = 80.0f;
+		float innerCos = cosf(18.0f * DEG2RAD);
+		float outerCos = cosf(40.0f * DEG2RAD);
+
+		auto apply = [&](ShaderType t) {
+			_shaders.set(t, "headlightPosL", &posL, SHADER_UNIFORM_VEC3);
+			_shaders.set(t, "headlightPosR", &posR, SHADER_UNIFORM_VEC3);
+			_shaders.set(t, "headlightDir", &dir, SHADER_UNIFORM_VEC3);
+			_shaders.set(t, "headlightColor", &color, SHADER_UNIFORM_VEC3);
+			_shaders.set(t, "headlightRange", &range, SHADER_UNIFORM_FLOAT);
+			_shaders.set(t, "headlightInnerCos", &innerCos, SHADER_UNIFORM_FLOAT);
+			_shaders.set(t, "headlightOuterCos", &outerCos, SHADER_UNIFORM_FLOAT);
+		};
+
+		apply(ShaderType::Terrain);
+		apply(ShaderType::Car);
+	}
+
 	void initStars() {
 		_starPositions.resize(_starCfg.count);
 		srand((unsigned int)time(NULL));
@@ -164,6 +195,7 @@ private:
 		_shaders.set(ShaderType::Terrain, "cameraPos", &camPos, SHADER_UNIFORM_VEC3);
 		_shaders.set(ShaderType::Car, "cameraPos", &camPos, SHADER_UNIFORM_VEC3);
 		_shaders.set(ShaderType::Car, "viewPos", &camPos, SHADER_UNIFORM_VEC3);
+		setHeadlightUniforms(car);
 
 		BeginMode3D(cam);
 		drawStars(cam);
@@ -189,4 +221,6 @@ private:
 		DrawTexturePro(_sceneTex.texture, { 0, 0, (float)_renderWidth, -(float)_renderHeight }, { 0, 0, (float)w, (float)h }, { 0, 0 }, 0.0f, WHITE);
 		EndShaderMode();
 	}
+
+
 };

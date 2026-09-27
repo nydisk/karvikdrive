@@ -27,6 +27,7 @@ public:
 	double lat() const;
 	double lon() const;
 	double distanceTravelled() const;
+	const CarInfo& info() const;
 
 	void setShader(Shader shader);
 private:

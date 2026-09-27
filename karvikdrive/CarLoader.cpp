@@ -28,13 +28,13 @@ void CarLoader::discoverCars(const std::string& folder) {
 
 		std::string carName = i.path().stem().string();
 		std::string carFolder = i.path().string();
-		std::string configPath = std::format("{}/handling.json", carFolder);
+		std::string configPath = std::format("{}/config.json", carFolder);
 		std::string modelPath = std::format("{}/{}.obj", carFolder, carName);
 
 		if (std::filesystem::exists(configPath) && std::filesystem::exists(modelPath)) {
 			CarInfo info;
 
-			info.handling = LoadCarConfig(configPath);
+			info.config = LoadCarConfig(configPath);
 			info.name = carName;
 			info.modelPath = modelPath;
 			_cars[info.name] = info;

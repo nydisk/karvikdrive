@@ -5,5 +5,5 @@
 struct CarInfo {
 	std::string name;
 	std::string modelPath;
-	CarConfig handling;
+	CarConfig config;
 };

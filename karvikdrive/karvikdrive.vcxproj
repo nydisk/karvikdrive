@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="CarLoader.cpp" />
     <ClCompile Include="HttpClient.cpp" />
     <ClCompile Include="KarvikDrive.cpp" />
     <ClCompile Include="Map.cpp" />

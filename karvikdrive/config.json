@@ -5,7 +5,7 @@
     },
     "dayNight": {
         "dayDurationSeconds": 120.0,
-        "startTimeNormalized": 0.25
+        "startTimeNormalized": 0.800000011920929
     },
     "fog": {
         "farMultiplier": 12.0,
