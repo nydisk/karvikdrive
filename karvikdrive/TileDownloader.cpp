@@ -8,7 +8,7 @@
 #pragma comment(lib, "winhttp.lib")
 
 std::string TileDownloader::getTileCacheName(int x, int y) {
-    return std::to_string(x) + "_" + std::to_string(y) + ".png";
+    return std::to_string(x) + "_" + std::to_string(y) + ".jpg";
 }
 
 bool TileDownloader::isCached(int x, int y) {

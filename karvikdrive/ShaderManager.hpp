@@ -76,7 +76,6 @@ private:
 	}
 	void load() {
 		_shaders[ShaderType::Shadow] = LoadShader(getShaderPath("shadow.vert").c_str(), getShaderPath("shadow.frag").c_str());
-		_shaders[ShaderType::Tree] = LoadShader(getShaderPath("tree.vert").c_str(), getShaderPath("tree.frag").c_str());
 		_shaders[ShaderType::Terrain] = LoadShader(getShaderPath("terrain.vert").c_str(), getShaderPath("terrain.frag").c_str());
 		_shaders[ShaderType::Car] = LoadShader(getShaderPath("car.vert").c_str(), getShaderPath("car.frag").c_str());
 		_shaders[ShaderType::Quantize] = LoadShader(nullptr, getShaderPath("quantize.frag").c_str());

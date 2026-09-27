@@ -38,7 +38,7 @@ int main() {
 	Cfg::loadConfigValues();
 	SetConfigFlags(FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT);
 	SetTraceLogLevel(LOG_WARNING);
-	InitWindow(Cfg::graphicsCfg.width, Cfg::graphicsCfg.height, "ballsack");
+	InitWindow(Cfg::graphicsCfg.width, Cfg::graphicsCfg.height, "karvikdrive");
 	if (IsWindowFullscreen()) { if (!Cfg::graphicsCfg.fullscreen) ToggleFullscreen(); }
 	else { if (Cfg::graphicsCfg.fullscreen) ToggleFullscreen(); }
 
