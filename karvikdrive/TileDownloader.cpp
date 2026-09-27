@@ -19,8 +19,8 @@ std::vector<uint8_t> TileDownloader::retrieveFromCache(int x, int y) {
     try {
         fs::last_write_time(kCacheDirectory + getTileCacheName(x, y), std::chrono::file_clock::now()); // update for LRU
     }
-    catch (...) {
-        std::cout << "uh oh\n";
+    catch (std::exception& e) {
+        std::cout << "uh oh\n * " << e.what() << '\n';
     }
     std::ifstream f(kCacheDirectory + getTileCacheName(x, y), std::ios::binary);
     return { std::istreambuf_iterator<char>(f),{} };
