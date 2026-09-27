@@ -45,7 +45,7 @@ void DayNight::update(float dt, double mpt) {
     _sunIntensity = c.sunIntensity;
     _zenithColor = c.zenithColor;
 
-    const float gridWorldSize = Map::GridSize * (float)mpt;
+    const float gridWorldSize = Map::kGridSize * (float)mpt;
     computeSunTransform(gridWorldSize);
 }
 

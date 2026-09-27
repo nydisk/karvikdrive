@@ -10,8 +10,9 @@ using Cfg = Configuration;
 namespace fs = std::filesystem;
 
 class TileDownloader {
-	inline static const std::string CacheDirectory = "cache/";
+	inline static const std::string kCacheDirectory = "cache/";
 	inline static uint64_t tilesCached = 0;
+
 	static std::string getTileCacheName(int x, int y);
 	static bool isCached(int x, int y);
 	static std::vector<uint8_t> retrieveFromCache(int x, int y);

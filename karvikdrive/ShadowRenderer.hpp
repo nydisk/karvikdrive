@@ -9,7 +9,7 @@ class ShadowRenderer {
 	unsigned int _fbo = 0;
 	unsigned int _depth = 0;
 public:
-	static constexpr int ShadowMapSize = 4096;
+	static constexpr int kShadowMapSize = 4096;
 
 	explicit ShadowRenderer(ShaderManager& shaders) : _shaders(shaders) {
 		initFBO();
@@ -25,7 +25,7 @@ public:
 
 		rlEnableFramebuffer(_fbo);
 		rlClearScreenBuffers();
-		rlViewport(0, 0, ShadowMapSize, ShadowMapSize);
+		rlViewport(0, 0, kShadowMapSize, kShadowMapSize);
 		rlEnableDepthTest();
 		rlDisableColorBlend();
 	}
@@ -40,7 +40,7 @@ public:
 		int loc = shaders.loc(type, "shadowMap");
 		rlActiveTextureSlot(1);
 		rlEnableTexture(_depth);
-		SetShaderValueTexture(shaders.get(type), loc, { _depth, ShadowMapSize, ShadowMapSize, 1, 1 });
+		SetShaderValueTexture(shaders.get(type), loc, { _depth, kShadowMapSize, kShadowMapSize, 1, 1 });
 	}
 
 	unsigned int depthTexture() const {
@@ -53,7 +53,7 @@ public:
 private:
 	void initFBO() {
 		_fbo = rlLoadFramebuffer();
-		_depth = rlLoadTextureDepth(ShadowMapSize, ShadowMapSize, false);
+		_depth = rlLoadTextureDepth(kShadowMapSize, kShadowMapSize, false);
 		rlFramebufferAttach(_fbo, _depth, RL_ATTACHMENT_DEPTH, RL_ATTACHMENT_TEXTURE2D, 0);
 		if (!rlFramebufferComplete(_fbo))
 			std::cout << "incomplete fbo\n";

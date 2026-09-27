@@ -8,17 +8,17 @@ class Car;
 class CameraController;
 class Map {
 public:
-	static constexpr int GridSize = 15;
-	static constexpr int RenderArea = GridSize * GridSize;
-	static constexpr int Radius = GridSize / 2;
-	static constexpr int Zoom = 20;
+	static constexpr int kGridSize = 15;
+	static constexpr int kRenderArea = kGridSize * kGridSize;
+	static constexpr int kRadius = kGridSize / 2;
+	static constexpr int kZoom = 20;
 private:
 	double _centerLat, _centerLon;
 	int _centerTileX, _centerTileY;
 
 	double _mpt;
 	
-	std::array<std::unique_ptr<MapChunk>, RenderArea> _chunks{};
+	std::array<std::unique_ptr<MapChunk>, kRenderArea> _chunks{};
 	int _chunkFilter;
 	
 	Vector3 _initialCarSpawn;

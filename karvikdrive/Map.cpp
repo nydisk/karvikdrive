@@ -5,30 +5,30 @@
 #include "CoordinateMath.hpp"
 
 Map::Map(double spawnLat, double spawnLon, int filter) : _centerLat(spawnLat), _centerLon(spawnLon), _chunkFilter(filter) {
-	_mpt = coords::metersPerTile(spawnLat, Zoom);
+	_mpt = coords::metersPerTile(spawnLat, kZoom);
 	std::cout << "mpt: " << _mpt << '\n';
 
-	int centerX = coords::lonToTileX(spawnLon, Zoom);
-	int centerY = coords::latToTileY(spawnLat, Zoom);
+	int centerX = coords::lonToTileX(spawnLon, kZoom);
+	int centerY = coords::latToTileY(spawnLat, kZoom);
 
 	_centerTileX = centerX;
 	_centerTileY = centerY;
 
-	double tileLon = coords::tileXToLon(centerX, Zoom);
-	double nextLon = coords::tileXToLon(centerX + 1, Zoom);
-	double tileLat = coords::tileYToLat(centerY, Zoom);
-	double nextLat = coords::tileYToLat(centerY + 1, Zoom);
+	double tileLon = coords::tileXToLon(centerX, kZoom);
+	double nextLon = coords::tileXToLon(centerX + 1, kZoom);
+	double tileLat = coords::tileYToLat(centerY, kZoom);
+	double nextLat = coords::tileYToLat(centerY + 1, kZoom);
 	float fracX = (float)((spawnLon - tileLon) / (nextLon - tileLon));
 	float fracZ = (float)((spawnLat - tileLat) / (nextLat - tileLat));
 	float offsetX = (fracX - 0.5f) * (float)_mpt;
 	float offsetZ = (fracZ - 0.5f) * (float)_mpt;
 	_initialCarSpawn = { offsetX, 0.75f, offsetZ };
 
-	for (int gy = -Radius; gy <= Radius; gy++) {
-		for (int gx = -Radius; gx <= Radius; gx++) {
+	for (int gy = -kRadius; gy <= kRadius; gy++) {
+		for (int gx = -kRadius; gx <= kRadius; gx++) {
 			int tileX = centerX + gx;
 			int tileY = centerY + gy;
-			int idx = (gy + Radius) * GridSize + (gx + Radius);
+			int idx = (gy + kRadius) * kGridSize + (gx + kRadius);
 			_chunks[idx] = std::make_unique<MapChunk>(MapChunkCoords{ gx, gy }, tileX, tileY, _mpt);
 		}
 	}
@@ -75,8 +75,8 @@ double Map::centerLon() const {
 void Map::shiftGrid(int dx, int dy, Car& car, CameraController& camera) {
 	_centerTileX += dx;
 	_centerTileY += dy;
-	_centerLat = coords::tileYToLat(_centerTileY, Zoom);
-	_centerLon = coords::tileXToLon(_centerTileX, Zoom);
+	_centerLat = coords::tileYToLat(_centerTileY, kZoom);
+	_centerLon = coords::tileXToLon(_centerTileX, kZoom);
 
 	car.snapToOrigin((float)_mpt * dx, (float)_mpt * dy);
 	camera.snapToOrigin((float)_mpt * dx, (float)_mpt * dy);

@@ -33,11 +33,11 @@ void MapChunk::updateGridCoord(int centerTileX, int centerTileY) {
 	int newX = _tileX - centerTileX;
 	int newY = _tileY - centerTileY;
 
-	if (std::abs(newX) > Map::Radius || std::abs(newY) > Map::Radius) {
-		if (newX > Map::Radius) newX -= Map::GridSize;
-		else if (newX < -Map::Radius) newX += Map::GridSize;
-		if (newY > Map::Radius) newY -= Map::GridSize;
-		else if (newY < -Map::Radius) newY += Map::GridSize;
+	if (std::abs(newX) > Map::kRadius || std::abs(newY) > Map::kRadius) {
+		if (newX > Map::kRadius) newX -= Map::kGridSize;
+		else if (newX < -Map::kRadius) newX += Map::kGridSize;
+		if (newY > Map::kRadius) newY -= Map::kGridSize;
+		else if (newY < -Map::kRadius) newY += Map::kGridSize;
 
 		_coords = { newX, newY };
 		_tileX = centerTileX + newX;
@@ -67,7 +67,7 @@ Vector3 MapChunk::getPosition() {
 
 void MapChunk::updateTexture() {
 	std::thread([this]() {
-		auto bytes = TileDownloader::fetchTile(_tileX, _tileY, Map::Zoom);
+		auto bytes = TileDownloader::fetchTile(_tileX, _tileY, Map::kZoom);
 		std::lock_guard lock(_mutex);
 		_pendingBytes = std::move(bytes);
 		_pendingUpdate = true;

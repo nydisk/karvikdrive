@@ -14,7 +14,7 @@ struct TimeOfDayColors {
 
 class DayNight {
 public:
-    static constexpr int ShadowMapSize = 4096;
+    static constexpr int kShadowMapSize = 4096;
 
     explicit DayNight(DayNightConfig cfg, double mpt);
 

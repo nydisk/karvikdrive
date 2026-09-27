@@ -14,8 +14,8 @@
 using Cfg = Configuration;
 
 void initFog(ShaderManager& shaders) {
-	float fogNear = Map::GridSize * Cfg::fogCfg.nearMultiplier;
-	float fogFar = Map::GridSize * Cfg::fogCfg.farMultiplier;
+	float fogNear = Map::kGridSize * Cfg::fogCfg.nearMultiplier;
+	float fogFar = Map::kGridSize * Cfg::fogCfg.farMultiplier;
 	shaders.set(ShaderType::Terrain, "fogNear", &fogNear, SHADER_UNIFORM_FLOAT);
 	shaders.set(ShaderType::Terrain, "fogFar", &fogFar, SHADER_UNIFORM_FLOAT);
 	shaders.set(ShaderType::Car, "fogNear", &fogNear, SHADER_UNIFORM_FLOAT);
