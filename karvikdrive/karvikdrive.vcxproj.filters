@@ -92,6 +92,15 @@
     <ClInclude Include="HttpClient.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CarConfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CarLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CarInfo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shd\terrain.vert" />

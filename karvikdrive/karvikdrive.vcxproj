@@ -143,6 +143,9 @@
   <ItemGroup>
     <ClInclude Include="CameraController.hpp" />
     <ClInclude Include="Car.hpp" />
+    <ClInclude Include="CarConfig.hpp" />
+    <ClInclude Include="CarInfo.hpp" />
+    <ClInclude Include="CarLoader.hpp" />
     <ClInclude Include="Configuration.hpp" />
     <ClInclude Include="DayNight.hpp" />
     <ClInclude Include="HttpClient.hpp" />

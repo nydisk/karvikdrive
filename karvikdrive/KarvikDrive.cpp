@@ -9,6 +9,7 @@
 #include "DayNight.hpp"
 #include "TileDownloader.hpp"
 #include "HUD.hpp"
+#include "CarLoader.hpp"
 
 using Cfg = Configuration;
 
@@ -49,7 +50,9 @@ int main() {
 	HUD hud{};
 
 	Map map(59.29960644714724, 24.65917325632329, TEXTURE_FILTER_ANISOTROPIC_8X);
-	Car car(camera.camera(), "mdl/civic.obj", CarConfig::Civic(), map.getCarSpawn());
+
+	CarLoader carLoader("vhc/");
+	Car car(camera.camera(), carLoader.getCarInfo("civic"), map.getCarSpawn());
 
 	DayNight dayNight(Cfg::dayNightCfg, map.mpt());
 	

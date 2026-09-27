@@ -12,10 +12,10 @@
 #include <raymath.h>
 #include "Configuration.hpp"
 
-Car::Car(Camera3D& cam, const char* modelPath, CarConfig config, Vector3 spawn)
-	: _cam(cam), _config(config), _vel{}, _pos(spawn)
+Car::Car(Camera3D& cam, CarInfo config, Vector3 spawn)
+	: _cam(cam), _info(config), _vel{}, _pos(spawn)
 {
-	_model = LoadModel(modelPath);
+	_model = LoadModel(_info.modelPath.c_str());
 	BoundingBox bb = GetModelBoundingBox(_model);
 	_pos.y = (bb.max.y - bb.min.y) / 2.0f;
 }
@@ -45,7 +45,7 @@ void Car::update(Map& map) {
 	float absForwardVel = std::abs(forwardVel);
 	float absLateralVel = std::abs(lateralVel);
 
-	float weightTransferFactor = _config.cgHeight / _config.wheelbase;
+	float weightTransferFactor = _info.handling.cgHeight / _info.handling.wheelbase;
 
 	bool accelerating = IsKeyDown(KEY_W);
 	bool braking = IsKeyDown(KEY_S);
@@ -54,30 +54,30 @@ void Car::update(Map& map) {
 
 	float engineForce = 0.0f;
 	if (accelerating && !handbrake) {
-		float maxPowerWatts = _config.horsepower * 745.7f;
-		float accelWeightBias = (1.0f - _config.frontWeightBias) * 0.3f;
-		float maxTractionForce = _config.mass * 9.81f * _config.tireFriction * (0.9f + accelWeightBias);
+		float maxPowerWatts = _info.handling.horsepower * 745.7f;
+		float accelWeightBias = (1.0f - _info.handling.frontWeightBias) * 0.3f;
+		float maxTractionForce = _info.handling.mass * 9.81f * _info.handling.tireFriction * (0.9f + accelWeightBias);
 		float powerLimitedForce = maxPowerWatts / std::max(absForwardVel, 1.0f);
 		engineForce = std::min(powerLimitedForce, maxTractionForce);
 	}
 
-	float drag = forwardVel * absForwardVel * _config.dragCoeff;
-	float rollingRes = (forwardVel != 0.0f ? (forwardVel > 0.f ? 1.0f : -1.0f) : 0.0f) * _config.mass * 0.015f * 9.81f;
+	float drag = forwardVel * absForwardVel * _info.handling.dragCoeff;
+	float rollingRes = (forwardVel != 0.0f ? (forwardVel > 0.f ? 1.0f : -1.0f) : 0.0f) * _info.handling.mass * 0.015f * 9.81f;
 
 	float engineBraking = 0.0f;
 	if (!accelerating && !braking && !handbrake && forwardVel > 0.5f) {
-		float engineBrakingForce = _config.mass * 9.81f * _config.engineBraking * std::clamp(absForwardVel / 10.0f, 0.2f, 1.0f);
+		float engineBrakingForce = _info.handling.mass * 9.81f * _info.handling.engineBraking * std::clamp(absForwardVel / 10.0f, 0.2f, 1.0f);
 		engineBraking = -engineBrakingForce;
 	}
 
 	float brakeForceVal = 0.0f;
 	if (braking) {
 		if (forwardVel > 0.01f) {
-			brakeForceVal = -_config.mass * 9.81f * _config.brakeForce;
+			brakeForceVal = -_info.handling.mass * 9.81f * _info.handling.brakeForce;
 		}
 		else {
-			float maxPowerWatts = _config.horsepower * 745.7f * 0.4f;
-			float maxTractionForce = _config.mass * 9.81f * _config.tireFriction * 0.5f;
+			float maxPowerWatts = _info.handling.horsepower * 745.7f * 0.4f;
+			float maxTractionForce = _info.handling.mass * 9.81f * _info.handling.tireFriction * 0.5f;
 			brakeForceVal = -std::min(maxPowerWatts / std::max(absForwardVel, 1.0f), maxTractionForce);
 		}
 	}
@@ -87,46 +87,46 @@ void Car::update(Map& map) {
 
 	float brakingIntensity = 0.0f;
 	if (braking && absForwardVel > 2.0f)
-		brakingIntensity = std::clamp(std::abs(brakeForceVal) / (_config.mass * 9.81f * _config.brakeForce), 0.0f, 1.0f);
+		brakingIntensity = std::clamp(std::abs(brakeForceVal) / (_info.handling.mass * 9.81f * _info.handling.brakeForce), 0.0f, 1.0f);
 
 	float handbrakeDrag = 0.0f;
 	if (handbrake && absForwardVel > 0.1f) {
-		float hbFriction = _config.mass * 9.81f * _config.tireFriction * 0.8f;
+		float hbFriction = _info.handling.mass * 9.81f * _info.handling.tireFriction * 0.8f;
 		handbrakeDrag = (forwardVel > 0.f ? -1.0f : 1.0f) * hbFriction;
 	}
 
-	float accelZ = (engineForce + engineBraking + brakeForceVal + handbrakeDrag - drag - rollingRes) / _config.mass;
+	float accelZ = (engineForce + engineBraking + brakeForceVal + handbrakeDrag - drag - rollingRes) / _info.handling.mass;
 
-	float steerMax = _config.steerMaxAngle * DEG2RAD;
+	float steerMax = _info.handling.steerMaxAngle * DEG2RAD;
 	float steerAngle = steerInput * steerMax;
 
-	float speedFactor = absForwardVel / _config.steerSpeedRef;
-	float gripFactor = 1.0f / (1.0f + speedFactor * speedFactor * _config.steerSpeedSharpness);
+	float speedFactor = absForwardVel / _info.handling.steerSpeedRef;
+	float gripFactor = 1.0f / (1.0f + speedFactor * speedFactor * _info.handling.steerSpeedSharpness);
 
-	float targetYaw = (forwardVel / _config.wheelbase) * tanf(steerAngle) * gripFactor;
+	float targetYaw = (forwardVel / _info.handling.wheelbase) * tanf(steerAngle) * gripFactor;
 
 	float slideAmount = std::clamp((absLateralVel - 3.0f) / 6.0f, 0.0f, 1.0f);
 	float dynamicMaxYaw = Lerp(90.0f * DEG2RAD, 300.0f * DEG2RAD, slideAmount);
 	targetYaw = std::clamp(targetYaw, -dynamicMaxYaw, dynamicMaxYaw);
 
-	float yawLerp = absLateralVel > 6.0f ? dt * (_config.yawDamping * 0.4f) : dt * _config.yawDamping;
+	float yawLerp = absLateralVel > 6.0f ? dt * (_info.handling.yawDamping * 0.4f) : dt * _info.handling.yawDamping;
 	_yawRate = Lerp(_yawRate, targetYaw, yawLerp);
 
-	float brakingGripPenalty = brakingIntensity * _config.frontWeightBias * (1.0f + weightTransferFactor);
+	float brakingGripPenalty = brakingIntensity * _info.handling.frontWeightBias * (1.0f + weightTransferFactor);
 	float cgRollPenalty = std::clamp(absLateralVel * weightTransferFactor * 0.15f, 0.0f, 0.35f);
 
 	float latGripScale = std::clamp(1.0f - absForwardVel * 0.005f, 0.5f, 1.0f);
 	latGripScale *= (1.0f - brakingGripPenalty);
 	latGripScale *= (1.0f - cgRollPenalty);
-	if (handbrake) latGripScale *= _config.handbrakeGrip;
+	if (handbrake) latGripScale *= _info.handling.handbrakeGrip;
 
-	float rearGripScale = latGripScale * _config.tireGripRear;
-	float frontGripScale = latGripScale * _config.tireGripFront;
+	float rearGripScale = latGripScale * _info.handling.tireGripRear;
+	float frontGripScale = latGripScale * _info.handling.tireGripFront;
 	float effectiveGripScale = Lerp(rearGripScale, frontGripScale, 0.35f);
 
-	float maxGrip = _config.mass * 9.81f * _config.tireFriction;
-	float latForce = std::clamp(-lateralVel * 22.0f * _config.mass * effectiveGripScale, -maxGrip, maxGrip);
-	float accelX = latForce / _config.mass;
+	float maxGrip = _info.handling.mass * 9.81f * _info.handling.tireFriction;
+	float latForce = std::clamp(-lateralVel * 22.0f * _info.handling.mass * effectiveGripScale, -maxGrip, maxGrip);
+	float accelX = latForce / _info.handling.mass;
 
 	forwardVel = tmpForwardVel + accelZ * dt;
 	lateralVel = lateralVel + accelX * dt;
@@ -139,7 +139,7 @@ void Car::update(Map& map) {
 	_vel.z = forward.z * forwardVel + right.z * lateralVel;
 
 	float slideSuppress = std::clamp((absLateralVel - 4.0f) / 8.0f, 0.0f, 1.0f);
-	float assistStrength = _config.stabilityAssist
+	float assistStrength = _info.handling.stabilityAssist
 		* (1.0f - brakingIntensity * 0.9f)
 		* (1.0f - slideSuppress * 0.9f);
 	if (handbrake) assistStrength = 0.0f;
