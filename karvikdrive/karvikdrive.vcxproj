@@ -118,7 +118,6 @@
     <ClInclude Include="WorldConfig.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="raylib.local.props" />
     <None Include="raylib.props" />
     <None Include="shd\car.frag" />
     <None Include="shd\car.vert" />
