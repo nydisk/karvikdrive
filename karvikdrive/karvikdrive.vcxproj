@@ -47,11 +47,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ExternalIncludePath>$(RaylibDirectory)include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(RaylibDirectory)include;$(ProjectDir)ext\imgui;$(ProjectDir)ext\rlImGui;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>$(RaylibDirectory)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ExternalIncludePath>$(RaylibDirectory)include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(RaylibDirectory)include;$(ProjectDir)ext\imgui;$(ProjectDir)ext\rlImGui;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>$(RaylibDirectory)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -88,6 +88,11 @@
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="CarLoader.cpp" />
+    <ClCompile Include="ext\imgui\imgui.cpp" />
+    <ClCompile Include="ext\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ext\imgui\imgui_tables.cpp" />
+    <ClCompile Include="ext\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ext\rlImGui\rlImGui.cpp" />
     <ClCompile Include="HttpClient.cpp" />
     <ClCompile Include="KarvikDrive.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -103,6 +108,17 @@
     <ClInclude Include="CarLoader.hpp" />
     <ClInclude Include="Configuration.hpp" />
     <ClInclude Include="DayNight.hpp" />
+    <ClInclude Include="ext\imgui\imconfig.h" />
+    <ClInclude Include="ext\imgui\imgui.h" />
+    <ClInclude Include="ext\imgui\imgui_internal.h" />
+    <ClInclude Include="ext\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ext\imgui\imstb_textedit.h" />
+    <ClInclude Include="ext\imgui\imstb_truetype.h" />
+    <ClInclude Include="ext\rlImGui\extras\FA6FreeSolidFontData.h" />
+    <ClInclude Include="ext\rlImGui\extras\IconsFontAwesome6.h" />
+    <ClInclude Include="ext\rlImGui\imgui_impl_raylib.h" />
+    <ClInclude Include="ext\rlImGui\rlImGui.h" />
+    <ClInclude Include="ext\rlImGui\rlImGuiColors.h" />
     <ClInclude Include="HttpClient.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="JSONHelper.hpp" />

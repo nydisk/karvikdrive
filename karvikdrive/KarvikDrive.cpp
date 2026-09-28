@@ -1,4 +1,7 @@
 #include <raylib.h>
+#include <imgui.h>
+#include <rlImGui.h>
+
 #include "Configuration.hpp"
 #include "ShaderManager.hpp"
 #include "ShadowRenderer.hpp"
@@ -59,6 +62,7 @@ int main() {
 	initShaderUniforms(shaders, renderer, map, car);
 
 	DisableCursor();
+	rlImGuiSetup(true);
 
 	while (!WindowShouldClose()) {
 		float dt = GetFrameTime();
@@ -81,9 +85,17 @@ int main() {
 		renderer.draw(camera.camera(), map, car, dayNight, dt);
 
 		hud.draw(car.velocity(), car.lat(), car.lon(), car.distanceTravelled());
+
+		rlImGuiBegin();
+		ImGui::Begin("slop");
+		ImGui::Text("FPS: %d", GetFPS());
+		ImGui::End();
+		rlImGuiEnd();
+
 		EndDrawing();
 	}
 
+	rlImGuiShutdown();
 	TileDownloader::cleanUpCache();
 	Cfg::saveConfigValues();
 }
