@@ -11,10 +11,17 @@
 #include "Car.hpp"
 #include "DayNight.hpp"
 #include "TileDownloader.hpp"
-#include "HUD.hpp"
+#include "Speedometer.hpp"
 #include "CarLoader.hpp"
 
+#include "UI_Base.hpp"
+#include "UI_GeneralInformation.hpp"
+#include "UI_Tools.hpp"
+
 using Cfg = Configuration;
+
+//TODO: move these somewhere that isn't the main.cpp file lol
+#pragma region Shader uniform initializations
 
 void initFog(ShaderManager& shaders) {
 	float fogNear = Map::kGridSize * Cfg::fogCfg.nearMultiplier;
@@ -37,6 +44,7 @@ void initShaderUniforms(ShaderManager& shaders, Renderer& renderer, Map& map, Ca
 	initSnap(shaders);
 	renderer.reinitShaders();
 }
+#pragma endregion
 
 int main() {
 	Cfg::loadConfigValues();
@@ -50,7 +58,7 @@ int main() {
 	ShadowRenderer shadows(shaders);
 	Renderer renderer(shaders, shadows, Cfg::graphicsCfg.renderWidth, Cfg::graphicsCfg.renderHeight, Cfg::skyCfg, Cfg::starCfg, Cfg::quantizeCfg);
 	CameraController camera{};
-	HUD hud{};
+	Speedometer speedometer{};
 
 	Map map(59.29960644714724, 24.65917325632329, TEXTURE_FILTER_ANISOTROPIC_8X);
 
@@ -61,15 +69,26 @@ int main() {
 	
 	initShaderUniforms(shaders, renderer, map, car);
 
-	DisableCursor();
 	rlImGuiSetup(true);
 
+	std::vector<std::unique_ptr<UI_Base>> imguiElements{};
+	imguiElements.push_back(std::make_unique<UI_GeneralInformation>(car));
+	imguiElements.push_back(std::make_unique<UI_Tools>(map, car, camera));
+
+	DisableCursor();
 	while (!WindowShouldClose()) {
 		float dt = GetFrameTime();
 
 		if (IsKeyPressed(KEY_F5)) { // reload shader keybind
 			shaders.reload();
 			initShaderUniforms(shaders, renderer, map, car);
+		}
+
+		if (IsKeyPressed(KEY_F1)) { // toggle mouse cursor keybind
+			if (IsCursorHidden()) 
+				EnableCursor();
+			else 
+				DisableCursor();
 		}
 
 		map.update(car, camera);
@@ -84,12 +103,11 @@ int main() {
 
 		renderer.draw(camera.camera(), map, car, dayNight, dt);
 
-		hud.draw(car.velocity(), car.lat(), car.lon(), car.distanceTravelled());
+		speedometer.draw(car.velocity());
 
 		rlImGuiBegin();
-		ImGui::Begin("slop");
-		ImGui::Text("FPS: %d", GetFPS());
-		ImGui::End();
+		for (const auto& element : imguiElements) 
+			element->imguiDraw();
 		rlImGuiEnd();
 
 		EndDrawing();

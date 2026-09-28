@@ -52,6 +52,9 @@
     <Filter Include="Source Files\External">
       <UniqueIdentifier>{1a508ac8-703c-4537-b96c-92eba61dd618}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{8e69616e-2b40-42ce-b38f-1f916acc4247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KarvikDrive.cpp">
@@ -95,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="ext\rlImGui\rlImGui.cpp">
       <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Tools.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_GeneralInformation.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +164,7 @@
     <ClInclude Include="CameraController.hpp">
       <Filter>Header Files\Vehicle</Filter>
     </ClInclude>
-    <ClInclude Include="HUD.hpp">
+    <ClInclude Include="Speedometer.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="ext\imgui\imconfig.h">
@@ -176,20 +185,29 @@
     <ClInclude Include="ext\rlImGui\rlImGuiColors.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
-    <ClInclude Include="ext\rlImGui\extras\IconsFontAwesome6.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ext\rlImGui\extras\FA6FreeSolidFontData.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\rlImGui\extras\IconsFontAwesome6.h">
+      <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="ext\imgui\imstb_rectpack.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="ext\imgui\imstb_textedit.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="ext\imgui\imstb_truetype.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_GeneralInformation.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Base.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Tools.hpp">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

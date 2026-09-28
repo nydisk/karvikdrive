@@ -5,48 +5,25 @@
 #include "Configuration.hpp"
 #include "JSONHelper.hpp"
 
-class HUD {
+class Speedometer {
 public:
-    HUD() {
+    Speedometer() {
         _speedMeter = LoadTexture("assets/speed.png");
     }
 
-    ~HUD() {
+    ~Speedometer() {
         UnloadTexture(_speedMeter);
     }
 
-    void draw(Vector3 velocity, double lat, double lon, double dist) const {
-        float uiScale = Configuration::graphicsCfg.uiScale;
+    void draw(Vector3 velocity) const {
+        float uiScale = Configuration::graphicsCfg.uiScale * (Configuration::graphicsCfg.height / 1080.0f);
         float speedKmh = Vector3Length(velocity) * 3.6f;
 
-        drawInfoBox(speedKmh, lat, lon, uiScale, dist);
         drawSpeedometer(speedKmh, uiScale);
     }
 
 private:
     Texture2D _speedMeter{};
-
-    void drawInfoBox(float speedKmh, double lat, double lon, float uiScale, double distanceTravelled) const {
-        std::ostringstream ss;
-        ss << std::fixed << std::setprecision(2);
-        ss << (int)speedKmh << " km/h\n";
-        ss << distanceTravelled / 1000.0 << " km\n";
-        ss << std::fixed << std::setprecision(6);
-        ss << "lat " << lat << '\n';
-        ss << "lon " << lon << '\n';
-        std::string text = ss.str();
-
-        const int padding = 4;
-        int textW = MeasureText(text.c_str(), 20);
-        DrawRectangle(
-            8 - padding,
-            8 - padding,
-            int((textW + padding * 2.0f) * uiScale),
-            int((20.0f * 4.0f + padding * 2.0f) * uiScale),
-            { 0, 0, 0, 128 }
-        );
-        DrawText(text.c_str(), 8, 8, int(20 * uiScale), WHITE);
-    }
 
     void drawSpeedometer(float speedKmh, float uiScale) const {
         int sw = GetScreenWidth();

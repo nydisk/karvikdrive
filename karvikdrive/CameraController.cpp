@@ -12,8 +12,10 @@ CameraController::CameraController() {
 }
 
 void CameraController::update(Vector3 carPos, float carDir, float dt) {
-    handleZoom();
-    handleMouseLook(carDir, dt);
+    if (IsCursorHidden()) {
+        handleZoom();
+        handleMouseLook(carDir, dt);
+    }
 
     float yawRad = _yaw * DEG2RAD;
     float pitchRad = _pitch * DEG2RAD;

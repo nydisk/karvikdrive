@@ -99,6 +99,8 @@
     <ClCompile Include="MapChunk.cpp" />
     <ClCompile Include="DayNight.cpp" />
     <ClCompile Include="TileDownloader.cpp" />
+    <ClCompile Include="UI_GeneralInformation.cpp" />
+    <ClCompile Include="UI_Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.hpp" />
@@ -120,7 +122,7 @@
     <ClInclude Include="ext\rlImGui\rlImGui.h" />
     <ClInclude Include="ext\rlImGui\rlImGuiColors.h" />
     <ClInclude Include="HttpClient.hpp" />
-    <ClInclude Include="HUD.hpp" />
+    <ClInclude Include="Speedometer.hpp" />
     <ClInclude Include="JSONHelper.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="ShaderManager.hpp" />
@@ -131,6 +133,9 @@
     <ClInclude Include="Map.hpp" />
     <ClInclude Include="MapChunk.hpp" />
     <ClInclude Include="TileDownloader.hpp" />
+    <ClInclude Include="UI_Base.hpp" />
+    <ClInclude Include="UI_GeneralInformation.hpp" />
+    <ClInclude Include="UI_Tools.hpp" />
     <ClInclude Include="WorldConfig.hpp" />
   </ItemGroup>
   <ItemGroup>
