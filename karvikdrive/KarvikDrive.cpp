@@ -51,7 +51,7 @@ int main() {
 
 	Map map(59.29960644714724, 24.65917325632329, TEXTURE_FILTER_ANISOTROPIC_8X);
 
-	CarLoader carLoader("vhc/");
+	CarLoader carLoader("veh/");
 	Car car(camera.camera(), carLoader.getCarInfo("civic"), map.getCarSpawn());
 
 	DayNight dayNight(Cfg::dayNightCfg, map.mpt());
