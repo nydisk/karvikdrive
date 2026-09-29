@@ -114,6 +114,8 @@ int main() {
 	}
 
 	rlImGuiShutdown();
+	CloseWindow();
+
 	TileDownloader::cleanUpCache();
 	Cfg::saveConfigValues();
 }

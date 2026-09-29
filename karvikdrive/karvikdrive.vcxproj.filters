@@ -211,30 +211,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shd\car.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\car.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\quantize.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\shadow.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\shadow.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\sky.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\terrain.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\terrain.vert">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="raylib.props" />
   </ItemGroup>
 </Project>

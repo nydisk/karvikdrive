@@ -9,8 +9,13 @@ enum class ShaderType {
 	Terrain,
 	Car,
 	Quantize,
-	Sky,
-	Tree
+	Sky
+};
+
+enum class ShaderClass {
+	Vertex,
+	Fragment,
+	SharedGLSL
 };
 
 class ShaderManager {
@@ -71,14 +76,55 @@ public:
 		SetShaderValueMatrix(_shaders.at(type), loc(type, name), m);
 	}
 private:
-	std::string getShaderPath(const std::string& name) {
-		return ShaderDirectory + name;
+	std::string getShaderPath(const std::string& name, ShaderClass shaderClass) {
+		return ShaderDirectory + (shaderClass == ShaderClass::Vertex ? "vert/" : shaderClass == ShaderClass::Fragment ? "frag/" : "") + name;
 	}
+
+	std::string loadShaderSource(const std::string& path) {
+		std::ifstream file(path);
+
+		if (!file.is_open()) {
+			std::cerr << "failed to open shader file: " << path << std::endl;
+			return "";
+		}
+
+		std::stringstream out;
+		std::string line;
+		while (std::getline(file, line)) {
+			size_t p = line.find("#include \"");
+			if (p != std::string::npos) {
+				size_t start = p + 10;
+				size_t end = line.find('"', start);
+				out << loadShaderSource(getShaderPath(line.substr(start, end - start), ShaderClass::SharedGLSL)) << "\n";
+			}
+			else {
+				out << line << "\n";
+			}
+		}
+
+		return out.str();
+	}
+
+	void loadShader(ShaderType type, const std::optional<std::string>& vertexFile, const std::optional<std::string>& fragmentFile) {
+		std::string vertexShader = "";
+		std::string fragmentShader = "";
+
+		std::cout << "ShaderManager: loading " << (vertexFile.has_value() ? vertexFile.value() : "<no vert>") << " " << (fragmentFile.has_value() ? fragmentFile.value() : "<no frag>") << std::endl;
+
+		if (vertexFile.has_value()) vertexShader = loadShaderSource(getShaderPath(vertexFile.value(), ShaderClass::Vertex));
+		if (fragmentFile.has_value()) fragmentShader = loadShaderSource(getShaderPath(fragmentFile.value(), ShaderClass::Fragment));
+		
+		const char* vsCode = vertexShader.empty() ? nullptr : vertexShader.c_str();
+		const char* fsCode = fragmentShader.empty() ? nullptr : fragmentShader.c_str();
+
+		_shaders[type] = LoadShaderFromMemory(vsCode, fsCode);
+	}
+
 	void load() {
-		_shaders[ShaderType::Shadow] = LoadShader(getShaderPath("shadow.vert").c_str(), getShaderPath("shadow.frag").c_str());
-		_shaders[ShaderType::Terrain] = LoadShader(getShaderPath("terrain.vert").c_str(), getShaderPath("terrain.frag").c_str());
-		_shaders[ShaderType::Car] = LoadShader(getShaderPath("car.vert").c_str(), getShaderPath("car.frag").c_str());
-		_shaders[ShaderType::Quantize] = LoadShader(nullptr, getShaderPath("quantize.frag").c_str());
-		_shaders[ShaderType::Sky] = LoadShader(nullptr, getShaderPath("sky.frag").c_str());
+		loadShader(ShaderType::Shadow, "shadow.vert", std::nullopt);
+		loadShader(ShaderType::Terrain, "basic.vert", "terrain.frag");
+		loadShader(ShaderType::Car, "basic.vert", "car.frag");
+		loadShader(ShaderType::Quantize, std::nullopt, "quantize.frag");
+		loadShader(ShaderType::Sky, std::nullopt, "sky.frag");
 	}
 };
