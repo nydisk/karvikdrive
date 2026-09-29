@@ -30,6 +30,8 @@ public:
 	const CarInfo& info() const;
 
 	void setShader(Shader shader);
+
+	void switchVehicle(CarInfo config);
 private:
 	void updateGeoPosition(Map& map);
 };

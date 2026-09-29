@@ -101,6 +101,7 @@
     <ClCompile Include="TileDownloader.cpp" />
     <ClCompile Include="UI_GeneralInformation.cpp" />
     <ClCompile Include="UI_Tools.cpp" />
+    <ClCompile Include="UI_VehicleLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.hpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="UI_Base.hpp" />
     <ClInclude Include="UI_GeneralInformation.hpp" />
     <ClInclude Include="UI_Tools.hpp" />
+    <ClInclude Include="UI_VehicleLoader.hpp" />
     <ClInclude Include="WorldConfig.hpp" />
   </ItemGroup>
   <ItemGroup>

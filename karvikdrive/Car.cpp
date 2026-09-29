@@ -179,6 +179,13 @@ void Car::setShader(Shader shader) {
 	_model.materials[0].shader = shader;
 }
 
+void Car::switchVehicle(CarInfo config) {
+	UnloadModel(_model);
+	_info = config;
+	_model = LoadModel(_info.modelPath.c_str());
+	BoundingBox bb = GetModelBoundingBox(_model);
+	_pos.y = (bb.max.y - bb.min.y) / 2.0f;
+}
 
 void Car::updateGeoPosition(Map& map) {
 	constexpr double metersPerDegLat = 111320.0;

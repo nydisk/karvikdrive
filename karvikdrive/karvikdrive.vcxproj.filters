@@ -105,6 +105,9 @@
     <ClCompile Include="UI_GeneralInformation.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI_VehicleLoader.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\json.hpp">
@@ -207,6 +210,9 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI_Tools.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_VehicleLoader.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
