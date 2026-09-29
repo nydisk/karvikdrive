@@ -17,6 +17,9 @@ private:
 	int _centerTileX, _centerTileY;
 
 	double _mpt;
+
+	Shader _shader;
+	bool _hasShader = false;
 	
 	std::array<std::unique_ptr<MapChunk>, kRenderArea> _chunks{};
 	int _chunkFilter;
@@ -35,6 +38,9 @@ public:
 	double mpt() const;
 
 	void setShader(Shader shader);
+
+	void rebuild(double lat, double lon);
+	void teleport(double lat, double lon, Car& car, CameraController& camera);
 private:
 	void shiftGrid(int dx, int dy, Car& car, CameraController& camera);
 };

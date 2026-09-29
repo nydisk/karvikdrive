@@ -81,7 +81,6 @@ private:
 	}
 
 	void setHeadlightUniforms(const Car& car) {
-
 		float headingRad = car.dir() * DEG2RAD;
 		Vector3 forward = { cosf(headingRad), 0.f, sinf(headingRad) };
 		Vector3 right = { -sinf(headingRad), 0.f, cosf(headingRad) };

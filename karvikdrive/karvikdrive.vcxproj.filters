@@ -16,96 +16,198 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{33772dfa-3d4a-4d41-bd40-d31141840545}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\External">
+      <UniqueIdentifier>{c49b106e-f19c-4595-8e73-faab9e578ed3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{415881a6-da70-4c3e-bcd6-11a92eeeea80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vehicle">
+      <UniqueIdentifier>{950b6b9f-88f5-4e43-9ab1-eedb9499ef54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{bebcc0bf-1f33-4613-888e-79f72a72fc0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rendering">
+      <UniqueIdentifier>{81e60895-78c4-40e1-b0de-aa3d6ace2893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Config">
+      <UniqueIdentifier>{b4e4a3f1-f04f-4d45-9ef3-5b29811d3cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{249628c6-aedf-425c-b606-59d2dc4ae8ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helper">
+      <UniqueIdentifier>{962a2f4d-5764-4752-a0f7-7916238297f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{5f58b600-45f5-4677-a034-2eeb1447154c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{feb52ad5-d722-437d-bda5-1c925c2bf1d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vehicle">
+      <UniqueIdentifier>{916ca02f-c556-41e0-8078-1e12a31c42a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\External">
+      <UniqueIdentifier>{1a508ac8-703c-4537-b96c-92eba61dd618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{8e69616e-2b40-42ce-b38f-1f916acc4247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KarvikDrive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TileDownloader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="MapChunk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Car.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="DayNight.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="HttpClient.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>Source Files\Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Source Files\Vehicle</Filter>
     </ClCompile>
     <ClCompile Include="CarLoader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="TileDownloader.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui.cpp">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_draw.cpp">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_tables.cpp">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\rlImGui\rlImGui.cpp">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Tools.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_GeneralInformation.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TileDownloader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoordinateMath.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapChunk.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ext\json.hpp">
+      <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="Map.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Car.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VehicleLoader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Configuration.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MapChunk.hpp">
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="DayNight.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowRenderer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldConfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemConfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JSONHelper.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HUD.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HttpClient.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Car.hpp">
+      <Filter>Header Files\Vehicle</Filter>
     </ClInclude>
     <ClInclude Include="CarConfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CarLoader.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Vehicle</Filter>
     </ClInclude>
     <ClInclude Include="CarInfo.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="CarLoader.hpp">
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.hpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.hpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowRenderer.hpp">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CoordinateMath.hpp">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.hpp">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemConfig.hpp">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldConfig.hpp">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="TileDownloader.hpp">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONHelper.hpp">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpClient.hpp">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.hpp">
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Speedometer.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imconfig.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imgui.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imgui_internal.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\rlImGui\imgui_impl_raylib.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\rlImGui\rlImGui.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\rlImGui\rlImGuiColors.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\rlImGui\extras\FA6FreeSolidFontData.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\rlImGui\extras\IconsFontAwesome6.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imstb_rectpack.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imstb_textedit.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\imgui\imstb_truetype.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_GeneralInformation.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Base.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Tools.hpp">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +236,5 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="raylib.props" />
-    <None Include="raylib.local.props.example" />
-    <None Include="raylib.local.props" />
   </ItemGroup>
 </Project>
