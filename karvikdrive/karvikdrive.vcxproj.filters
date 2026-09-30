@@ -105,6 +105,9 @@
     <ClCompile Include="UI_GeneralInformation.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI_VehicleLoader.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\json.hpp">
@@ -209,32 +212,11 @@
     <ClInclude Include="UI_Tools.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI_VehicleLoader.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shd\car.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\car.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\quantize.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\shadow.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\shadow.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\sky.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\terrain.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shd\terrain.vert">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="raylib.props" />
   </ItemGroup>
 </Project>

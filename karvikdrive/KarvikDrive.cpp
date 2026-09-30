@@ -17,6 +17,7 @@
 #include "UI_Base.hpp"
 #include "UI_GeneralInformation.hpp"
 #include "UI_Tools.hpp"
+#include "UI_VehicleLoader.hpp"
 
 using Cfg = Configuration;
 
@@ -71,15 +72,18 @@ int main() {
 
 	rlImGuiSetup(true);
 
+	bool raiseShaderReload = false;
 	std::vector<std::unique_ptr<UI_Base>> imguiElements{};
 	imguiElements.push_back(std::make_unique<UI_GeneralInformation>(car));
 	imguiElements.push_back(std::make_unique<UI_Tools>(map, car, camera));
+	imguiElements.push_back(std::make_unique<UI_VehicleLoader>(map, car, camera, carLoader, raiseShaderReload));
 
 	DisableCursor();
 	while (!WindowShouldClose()) {
 		float dt = GetFrameTime();
 
-		if (IsKeyPressed(KEY_F5)) { // reload shader keybind
+		if (IsKeyPressed(KEY_F5) || raiseShaderReload) { // reload shader keybind
+			raiseShaderReload = false;
 			shaders.reload();
 			initShaderUniforms(shaders, renderer, map, car);
 		}
@@ -114,6 +118,8 @@ int main() {
 	}
 
 	rlImGuiShutdown();
+	CloseWindow();
+
 	TileDownloader::cleanUpCache();
 	Cfg::saveConfigValues();
 }

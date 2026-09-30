@@ -101,6 +101,7 @@
     <ClCompile Include="TileDownloader.cpp" />
     <ClCompile Include="UI_GeneralInformation.cpp" />
     <ClCompile Include="UI_Tools.cpp" />
+    <ClCompile Include="UI_VehicleLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.hpp" />
@@ -136,18 +137,11 @@
     <ClInclude Include="UI_Base.hpp" />
     <ClInclude Include="UI_GeneralInformation.hpp" />
     <ClInclude Include="UI_Tools.hpp" />
+    <ClInclude Include="UI_VehicleLoader.hpp" />
     <ClInclude Include="WorldConfig.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="raylib.props" />
-    <None Include="shd\car.frag" />
-    <None Include="shd\car.vert" />
-    <None Include="shd\quantize.frag" />
-    <None Include="shd\shadow.frag" />
-    <None Include="shd\shadow.vert" />
-    <None Include="shd\sky.frag" />
-    <None Include="shd\terrain.frag" />
-    <None Include="shd\terrain.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

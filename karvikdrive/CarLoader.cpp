@@ -22,6 +22,10 @@ const CarInfo& CarLoader::getCarInfo(const std::string& name) const {
 	return it->second;
 }
 
+const std::unordered_map<std::string, CarInfo>& CarLoader::getAllCars() const {
+	return _cars;
+}
+
 void CarLoader::discoverCars(const std::string& folder) {
 	for (const auto& i : std::filesystem::directory_iterator(folder)) {
 		if (!i.is_directory()) continue;

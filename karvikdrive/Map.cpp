@@ -35,7 +35,7 @@ void Map::update(Car& car, CameraController& camera) {
 }
 
 void Map::rebuild(double lat, double lon) {
-	std::cout << "Rebuilding map at lat: " << lat << ", lon: " << lon << std::endl;
+	std::cout << "Map: rebuilding map at lat: " << lat << ", lon: " << lon << std::endl;
 
 	_centerLat = lat;
 	_centerLon = lon;
@@ -65,6 +65,7 @@ void Map::rebuild(double lat, double lon) {
 
 void Map::teleport(double lat, double lon, Car& car, CameraController& camera) {
 	Vector3 oldPos = car.pos();
+	std::cout << "Map: teleporting to lat: " << lat << ", lon: " << lon << std::endl;
 	rebuild(lat, lon);
 	Vector3 target = _initialCarSpawn;
 
